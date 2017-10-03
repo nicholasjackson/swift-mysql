@@ -3,6 +3,7 @@
 ![Swift 3.1](https://img.shields.io/badge/Swift-3.1-orange.svg)
 [![Swift Package Manager compatible](https://img.shields.io/badge/SwiftPM-compatible-orange.svg)](https://github.com/apple/swift-package-manager)
 [![Documentation](https://img.shields.io/badge/Docs-click%20here-orange.svg)](http://htmlpreview.github.io/?https://github.com/nicholasjackson/swift-mysql/blob/master/docs/index.html)
+[![CircleCI](https://circleci.com/gh/nicholasjackson/swift-mysql.svg?style=svg)](https://circleci.com/gh/nicholasjackson/swift-mysql)  
 
 A MySQL client for Swift. It wraps the `libmysql` C library and provides many convenience functions such as connection pooling and result sets as native types.
 
