@@ -1,14 +1,24 @@
-// swift-tools-version:3.1
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
   name: "MySQL",
-  targets: [
-    Target(name: "MySQLTests", dependencies: ["MySQL"]),
-    Target(name: "IntegrationTests", dependencies: ["MySQL"]),
-    Target(name: "MySQL"),
-  ],
+
+  products: [
+        .library(
+            name: "MySQL",
+            targets: ["MySQL"]
+        )
+    ],
+
   dependencies: [
-    .Package(url: "https://github.com/nicholasjackson/swift-libmysql", majorVersion: 0, minor: 1)
+    .package(url: "https://github.com/nicholasjackson/swift-libmysql", from: "0.1.0")
+  ],
+
+  targets: [
+    .testTarget(name: "MySQLTests", dependencies: ["MySQL"]),
+    .testTarget(name: "IntegrationTests", dependencies: ["MySQL"]),
+    .target(name: "MySQL"),
   ]
+  
 )

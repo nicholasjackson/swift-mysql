@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/nicholasjackson/swift-libmysql",
         "state": {
           "branch": null,
-          "revision": "7354cab9c38aa016a8bb07a9678f64878b4d5752",
-          "version": "0.1.0"
+          "revision": "e9cf8966c6782a42835333293486e7563a7106bf",
+          "version": "0.3.0"
         }
       }
     ]
