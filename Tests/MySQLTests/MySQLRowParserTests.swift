@@ -152,6 +152,23 @@ public class MySQLRowParserTests: XCTestCase {
     XCTAssertTrue(row["header1"] is String, "Type should be String")
   }
 
+  public func testParsesFieldWithDateValueSetsTypeString() {
+    cRow[0] = "1".getUnsafeMutablePointer()
+    headers[0].type = MySQLFieldType.Date
+
+    let row = parser.parse(row: cRow, headers: headers)
+
+    XCTAssertTrue(row["header1"] is String, "Type should be String")
+  }
+  public func testParsesFieldWithDateTimeValueSetsTypeString() {
+    cRow[0] = "1".getUnsafeMutablePointer()
+    headers[0].type = MySQLFieldType.DateTime
+
+    let row = parser.parse(row: cRow, headers: headers)
+
+    XCTAssertTrue(row["header1"] is String, "Type should be String")
+  }
+
   public func testParsesFieldWithBlobValueSetsTypeString() {
     cRow[0] = "1".getUnsafeMutablePointer()
     headers[0].type = MySQLFieldType.Blob
@@ -179,6 +196,8 @@ extension MySQLRowParserTests {
         ("testParsesFieldWithFloatValueSetsTypeFloat", testParsesFieldWithFloatValueSetsTypeFloat),
         ("testParsesFieldWithDoubleValueSetsTypeDouble", testParsesFieldWithDoubleValueSetsTypeDouble),
         ("testParsesFieldWithTimestampValueSetsTypeString", testParsesFieldWithTimestampValueSetsTypeString),
+        ("testParsesFieldWithDateValueSetsTypeString", testParsesFieldWithDateValueSetsTypeString),
+        ("testParsesFieldWithDateTimeValueSetsTypeString", testParsesFieldWithDateTimeValueSetsTypeString),
         ("testParsesFieldWithBlobValueSetsTypeString", testParsesFieldWithBlobValueSetsTypeString)
       ]
     }
