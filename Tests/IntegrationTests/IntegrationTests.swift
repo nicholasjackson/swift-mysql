@@ -286,4 +286,38 @@ public class IntegrationTests: XCTestCase {
         XCTAssertEqual("Car Transaction", data["Name"] as? String)
     }
   }
+
+  func testInsertsDateandDateTime() {
+   
+    connectionString!.database = "testdb"
+    createConnection(connectionString: connectionString!) {
+      (connection: MySQLConnectionProtocol) in
+
+        let _ = try connection.execute(query: "DROP TABLE IF EXISTS Birthdays")
+        let _ = try connection.execute(query: "CREATE TABLE Birthdays(Id INT, Name TEXT, Birthday DATE, UpdatedAt DATETIME, PRIMARY KEY (Id))")
+
+        let now = "2018-01-01 00:00:00"
+        let mozartsBirthday = "1756-01-27"
+        var queryBuilder = MySQLQueryBuilder()
+          .insert(data: [
+            "Id": 1,
+            "Name": "Mozart",
+            "Birthday": mozartsBirthday,
+            "UpdatedAt": now], table: "Birthdays")
+
+        let _ = try connection.execute(builder: queryBuilder)
+
+        queryBuilder = MySQLQueryBuilder()
+          .select(fields: ["Birthday", "UpdatedAt"], table: "Birthdays")
+
+        let result = try connection.execute(builder: queryBuilder)
+
+        if let r = result.nextResult() {
+            XCTAssertEqual(mozartsBirthday, r["Birthday"] as! String)
+            XCTAssertEqual(now, r["UpdatedAt"] as! String)
+        } else {
+            XCTFail("No results")
+        }
+    }
+  }
 }

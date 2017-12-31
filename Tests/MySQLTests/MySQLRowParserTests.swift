@@ -160,6 +160,7 @@ public class MySQLRowParserTests: XCTestCase {
 
     XCTAssertTrue(row["header1"] is String, "Type should be String")
   }
+  
   public func testParsesFieldWithDateTimeValueSetsTypeString() {
     cRow[0] = "1".getUnsafeMutablePointer()
     headers[0].type = MySQLFieldType.DateTime
